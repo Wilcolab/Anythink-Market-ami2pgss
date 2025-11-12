@@ -188,6 +188,13 @@ BODY {
     max-width: 320px;
 }
 
+.memory-btn {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed) !important;
+    color: #fff !important;
+    border: 1px solid rgba(124, 58, 237, 0.3) !important;
+    font-size: 0.9em;
+}
+
 .btn {
     font-size: 1em;
     height: 45px;

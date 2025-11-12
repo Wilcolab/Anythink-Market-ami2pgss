@@ -1,6 +1,7 @@
 'use strict';
 
 var value = 0;
+var memory = 0;
 
 var states = {
     "start": 0,
@@ -120,6 +121,39 @@ function signPressed() {
 
     if (value != 0) {
         setValue(-1 * value);
+    }
+}
+
+// Memory Functions
+function memoryClear() {
+    memory = 0;
+    updateMemoryIndicator();
+}
+
+function memoryRecall() {
+    setValue(memory);
+    state = states.operand1;
+}
+
+function memoryAdd() {
+    memory += getValue();
+    updateMemoryIndicator();
+}
+
+function memorySubtract() {
+    memory -= getValue();
+    updateMemoryIndicator();
+}
+
+function updateMemoryIndicator() {
+    var memoryIndicator = document.getElementById("memoryIndicator");
+    if (memoryIndicator) {
+        if (memory !== 0) {
+            memoryIndicator.style.display = "block";
+            memoryIndicator.textContent = "M: " + memory;
+        } else {
+            memoryIndicator.style.display = "none";
+        }
     }
 }
 
