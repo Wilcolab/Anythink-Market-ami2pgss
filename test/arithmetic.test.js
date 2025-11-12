@@ -94,7 +94,80 @@ describe('Arithmetic', function () {
     });
 
 // TODO: Challenge #1
- 
+    describe('Power', function () {
+        it('calculates 2 to the power of 3', function (done) {
+            request.get('/arithmetic?operation=power&operand1=2&operand2=3')
+                .expect(200)
+                .end(function (err, res) {
+                    expect(res.body).to.eql({ result: 8 });
+                    done();
+                });
+        });
+        it('calculates a number to the power of 0', function (done) {
+            request.get('/arithmetic?operation=power&operand1=42&operand2=0')
+                .expect(200)
+                .end(function (err, res) {
+                    expect(res.body).to.eql({ result: 1 });
+                    done();
+                });
+        });
+        it('calculates a number to the power of 1', function (done) {
+            request.get('/arithmetic?operation=power&operand1=42&operand2=1')
+                .expect(200)
+                .end(function (err, res) {
+                    expect(res.body).to.eql({ result: 42 });
+                    done();
+                });
+        });
+        it('calculates with negative base', function (done) {
+            request.get('/arithmetic?operation=power&operand1=-2&operand2=3')
+                .expect(200)
+                .end(function (err, res) {
+                    expect(res.body).to.eql({ result: -8 });
+                    done();
+                });
+        });
+        it('calculates with negative exponent', function (done) {
+            request.get('/arithmetic?operation=power&operand1=2&operand2=-2')
+                .expect(200)
+                .end(function (err, res) {
+                    expect(res.body.result).to.equal(0.25);
+                    done();
+                });
+        });
+        it('calculates with decimal base', function (done) {
+            request.get('/arithmetic?operation=power&operand1=2.5&operand2=2')
+                .expect(200)
+                .end(function (err, res) {
+                    expect(res.body).to.eql({ result: 6.25 });
+                    done();
+                });
+        });
+        it('calculates with fractional exponent', function (done) {
+            request.get('/arithmetic?operation=power&operand1=4&operand2=0.5')
+                .expect(200)
+                .end(function (err, res) {
+                    expect(res.body).to.eql({ result: 2 });
+                    done();
+                });
+        });
+        it('calculates large powers', function (done) {
+            request.get('/arithmetic?operation=power&operand1=10&operand2=6')
+                .expect(200)
+                .end(function (err, res) {
+                    expect(res.body).to.eql({ result: 1000000 });
+                    done();
+                });
+        });
+        it('calculates with scientific notation', function (done) {
+            request.get('/arithmetic?operation=power&operand1=1.5e1&operand2=2')
+                .expect(200)
+                .end(function (err, res) {
+                    expect(res.body).to.eql({ result: 225 });
+                    done();
+                });
+        });
+    });
 
     describe('Multiplication', function () {
         it('multiplies two positive integers', function (done) {
