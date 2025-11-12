@@ -1,6 +1,7 @@
 'use strict';
 
 var value = 0;
+var memory = 0;
 
 var states = {
     "start": 0,
@@ -17,6 +18,19 @@ var operand2 = 0;
 var operation = null;
 
 function calculate(operand1, operand2, operation) {
+    // Handle client-side-only operations (power '^') locally
+    if (operation == '^') {
+        var base = Number(operand1);
+        var exp = Number(operand2);
+        if (isNaN(base) || isNaN(exp)) {
+            setError();
+            return;
+        }
+        var result = Math.pow(base, exp);
+        setValue(result);
+        return;
+    }
+
     var uri = location.origin + "/arithmetic";
 
     // TODO: Add operator
@@ -110,8 +124,62 @@ function signPressed() {
     }
 }
 
+// Memory Functions
+function memoryClear() {
+    memory = 0;
+    updateMemoryIndicator();
+}
+
+function memoryRecall() {
+    setValue(memory);
+    state = states.operand1;
+}
+
+function memoryAdd() {
+    memory += getValue();
+    updateMemoryIndicator();
+}
+
+function memorySubtract() {
+    memory -= getValue();
+    updateMemoryIndicator();
+}
+
+function updateMemoryIndicator() {
+    var memoryIndicator = document.getElementById("memoryIndicator");
+    if (memoryIndicator) {
+        if (memory !== 0) {
+            memoryIndicator.style.display = "block";
+            memoryIndicator.textContent = "M: " + memory;
+        } else {
+            memoryIndicator.style.display = "none";
+        }
+    }
+}
+
 function operationPressed(op) {
-    operand1 = getValue();
+    // If the user has entered the second operand and then presses
+    // another operator, evaluate a pending exponentiation locally
+    // (so chaining like "2 ^ 3 ^ 2" behaves sensibly).
+    if (state == states.operand2) {
+        operand2 = getValue();
+
+        if (operation == '^') {
+            // compute power locally using Math.pow
+            var base = Number(operand1);
+            var exp = Number(operand2);
+            var result = Math.pow(base, exp);
+            setValue(result);
+            operand1 = result;
+            // leave operation set to the newly-pressed operator below
+        }
+    } else if (state == states.complete) {
+        // allow chaining after a completed calculation
+        operand1 = getValue();
+    } else {
+        operand1 = getValue();
+    }
+
     operation = op;
     state = states.operator;
 }

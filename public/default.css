@@ -3,7 +3,8 @@ BODY {
     width: 100%;
     padding: 0;
     margin: 0;
-    background-color: #1b4076;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 @media screen and (min-device-width: 500px) and (min-device-height: 1024px) {
@@ -25,14 +26,13 @@ BODY {
 .container {
     min-width: 250px;
     min-height: 531px;
-    width: 250px;
-    padding: 25px;
-    margin: 0 auto;
+    width: 280px;
+    padding: 30px;
+    margin: 40px auto;
     position: relative;
-    background-image: url(background.png);
-    background-size: 300px 531px;
-    background-repeat: no-repeat;
-    background-position: center top;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.98));
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
 }
 
 #results {
@@ -46,18 +46,23 @@ BODY {
 }
 
 #result {
-    background-color: #9b9b9b;
+    background: linear-gradient(to right, #1e3a8a, #3b82f6);
+    color: #fff;
     width: 226px;
     height: 63px;
-    margin: 0;
+    margin: 0 auto;
     padding: 0 12px;
-    position: absolute;
-    border: 0;
-    left: 0;
-    top: 32px;
-    font-family: system-ui;
+    position: relative;
+    border: 2px solid #1e40af;
+    border-radius: 10px;
+    font-family: 'Monaco', 'Courier New', monospace;
     font-size: 25px;
     text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(30, 58, 138, 0.2);
+    margin-bottom: 15px;
 }
 
 /*BUTTON {
@@ -158,9 +163,15 @@ BODY {
 
 .box {
     box-sizing: border-box;
-    top: 220px;
+    top: 130px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 250px;
     position: absolute;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(167, 139, 250, 0.08));
+    padding: 15px;
+    border-radius: 15px;
+    border: 2px solid rgba(59, 130, 246, 0.2);
 }
 
 .span-2 {
@@ -177,10 +188,86 @@ BODY {
     max-width: 320px;
 }
 
+.memory-btn {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed) !important;
+    color: #fff !important;
+    border: 1px solid rgba(124, 58, 237, 0.3) !important;
+    font-size: 0.9em;
+}
+
 .btn {
     font-size: 1em;
     height: 45px;
-    border: 1px solid black;
-    background-color: #d5d5d5;
+    border: none;
+    border-radius: 8px;
     margin: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.btn {
+    background: linear-gradient(135deg, #e0e7ff, #ddd6fe);
+    color: #374151;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #c7d2fe, #c4b5fd);
+    box-shadow: 0 6px 16px rgba(99, 102, 241, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
+}
+
+.calculator-buttons .btn:nth-child(3),
+.calculator-buttons .btn:nth-child(8),
+.calculator-buttons .btn:nth-child(13),
+.calculator-buttons .btn:nth-child(18),
+.calculator-buttons .btn:nth-child(21) {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: #fff;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.calculator-buttons .btn:nth-child(3):hover,
+.calculator-buttons .btn:nth-child(8):hover,
+.calculator-buttons .btn:nth-child(13):hover,
+.calculator-buttons .btn:nth-child(18):hover,
+.calculator-buttons .btn:nth-child(21):hover {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    box-shadow: 0 6px 16px rgba(245, 158, 11, 0.3);
+}
+
+.calculator-buttons .btn:nth-child(4),
+.calculator-buttons .btn:nth-child(9),
+.calculator-buttons .btn:nth-child(14),
+.calculator-buttons .btn:nth-child(19) {
+    background: linear-gradient(135deg, #34d399, #10b981);
+    color: #fff;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.calculator-buttons .btn:nth-child(4):hover,
+.calculator-buttons .btn:nth-child(9):hover,
+.calculator-buttons .btn:nth-child(14):hover,
+.calculator-buttons .btn:nth-child(19):hover {
+    background: linear-gradient(135deg, #10b981, #059669);
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
+}
+
+.calculator-buttons .btn:nth-child(20) {
+    background: linear-gradient(135deg, #f87171, #ef4444);
+    color: #fff;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.calculator-buttons .btn:nth-child(20):hover {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.3);
 }

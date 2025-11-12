@@ -11,11 +11,18 @@
         <div id="result"><span class="digit0">0</span></div>
       </div>
 
+      <div id="memoryIndicator" style="display:none; text-align: center; color: #667eea; font-weight: bold; margin: 8px 0; font-size: 14px;"></div>
+
       <div id="loading" style="visibility:hidden"></div>
 
       <div class="box">
         <div class="calculator">
           <div class="calculator-buttons">
+            <button class="btn memory-btn" onClick="memoryClear()">MC</button>
+            <button class="btn memory-btn" onClick="memoryRecall()">MR</button>
+            <button class="btn memory-btn" onClick="memoryAdd()">M+</button>
+            <button class="btn memory-btn" onClick="memorySubtract()">M-</button>
+
             <button class="btn span-2"></button>
             <button class="btn" onClick="clearPressed()">C</button>
             <button class="btn" onClick="clearPressed()">CE</button>
@@ -40,7 +47,8 @@
             <button class="btn" onClick="operationPressed('+')">+</button>
             <button class="btn" onClick="equalPressed()">=</button>
 
-            <!-- TODO: Buttons -->
+            <!-- add a button for a power (or exponential) function -->
+            <button class="btn" onClick="operationPressed('^')">^</button>
           </div>
         </div>
       </div>
